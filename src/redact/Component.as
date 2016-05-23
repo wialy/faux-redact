@@ -2,7 +2,6 @@ package redact
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import faux.ObjectUtil;
 	
 	public class Component extends Sprite
 	{
@@ -31,7 +30,7 @@ package redact
 		
 		public function setProps(props:Object):void {
 			
-			const newProps:Object = ObjectUtil.merge(this.props, props);
+			const newProps:Object = props;
 			const needsUpdate:Boolean = shouldUpdate(newProps);
 			
 			this.props = newProps;
@@ -41,7 +40,11 @@ package redact
 			}
 		}
 		
-		public function shouldUpdate(props:Object):Boolean {
+		public function getProps():Object {
+			return this.props;
+		}
+		
+		public function shouldUpdate(newProps:Object):Boolean {
 			return true;
 		}
 		
