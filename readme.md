@@ -6,10 +6,10 @@ This is an attempt to recreate the basics of [Redux](https://github.com/reactjs/
 - While in development stage, there's a [Monster Debugger](http://www.monsterdebugger.com/) dependecy in classes.
 
 ## TODO
-~~1. Faux Store~~
-2. Faux actions
-3. Faux reducers
-~~4. Redact Component~~
+* [x] Faux Store
+* [ ] Faux actions
+* [ ] Faux reducers
+* [x] Redact Component
 
 ## Faux
 Faux is an ActionScript3 nanoframework inspired by Redux. The primary goal is to have all data stored in one `store` object and subscribe to it's `states` changes via `subscribe` method.
