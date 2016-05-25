@@ -70,7 +70,7 @@ public class Component extends Sprite {
         return this.state;
     }
 
-    public function shouldUpdate(newProps:Object, newState:Object = null):Boolean {
+    public function shouldUpdate(newProps:Object = null, newState:Object = null):Boolean {
         return true;
     }
 

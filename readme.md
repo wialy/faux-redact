@@ -109,7 +109,7 @@ Action is an object, containig data for the reducer. By [Flux Standard Action](h
 	type: 'ACTION_TYPE',	// a string with action type name
 							// the only required field
 
-	payload: { ... },		// data to passed to stored
+	payload: { ... },		// data to be passed to store
 
 	error: true,			// set only when error occures
 							// In that case, the payload contains error data
@@ -178,31 +178,47 @@ AS3 component-thinking approach of building apps inspired by React. The best app
 The base class is `Component`, which receives initial propertines in it's constructor:
 
 ```
-public function Component(props:Object = null) { ... }
+public function Component(props:Object = null, state:Object = null) { ... }
 ```
 
 #### Change properties
 ```
 public function setProps(props:Object):void 
+public function mergeProps(props:Object):void
 public function getProps():Object
 ```
 
-#### Component lifecycle
-Functions to override:
+#### Changing state
 ```
-// Best place for update logic
-public function update():void {	}
+public function setState(state:Object):void
+public function mergeState(state:Object):void 
+public function getState():Object 
+```
+Question: should setState be public or reserve it just for component internal methods?
 
-// These two are called just after the component
-// is added/removed to/from stage
+#### Component lifecycle
+Best place for passing props to children:
+```
+public function update():void {	}
+```
+These two are called just after the component is added/removed to/from stage
+```
 public function onAdded():void { }
 public function onRemoved():void { }
-
-// Determine, if the update function should be called when
-// new properties are set.
-// Default is always true.
-public function shouldUpdate(newProps:Object):Boolean { return true }
 ```
+
+Determine if the update function should be called when new properties are set.
+Default is always true.
+```
+public function shouldUpdate(
+	newProps:Object = null,
+	newState:Object = null
+):Boolean {
+        return true;
+}
+```
+
+Every time `setProps` or `setState` is performed, `shouldUpdate` method decides whether to call an `update`
 
 ### Thoughts and ideas?
 Feel free to add any [issues!](https://github.com/wialy/faux-redact/issues)
