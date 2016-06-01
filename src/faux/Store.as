@@ -2,6 +2,9 @@ package faux {
 import com.demonsters.debugger.MonsterDebugger;
 
 public class Store {
+
+    public static const ACTION_INITIALIZE:String = 'faux:initialize';
+
     private var state:Object;
     private var subscribers:Vector.<Function>;
 
@@ -9,8 +12,7 @@ public class Store {
 
     public function Store(reducer:Reducer, initialState:Object = null) {
         this.reducer = reducer;
-
-        this.state = initialState;
+        this.state = reducer.reduce(initialState, {type: ACTION_INITIALIZE});
         this.subscribers = new <Function>[];
     }
 

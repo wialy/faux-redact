@@ -13,17 +13,21 @@ public class Component extends Sprite {
 
         this.props = props;
 
-        addEventListener(Event.ADDED_TO_STAGE, _onAdded, false, 0, true);
-        addEventListener(Event.REMOVED_FROM_STAGE, _onRemoved, false, 0, true);
+        addEventListener(Event.ADDED_TO_STAGE, _onAdded);
     }
 
     private function _onAdded(e:Event):void {
-        this.onAdded();
+        removeEventListener(Event.ADDED_TO_STAGE, _onAdded);
 
+        this.onAdded();
         update();
+
+        addEventListener(Event.REMOVED_FROM_STAGE, _onRemoved);
     }
 
     private function _onRemoved(e:Event):void {
+        removeEventListener(Event.REMOVED_FROM_STAGE, _onRemoved);
+
         this.onRemoved();
         this.props = null;
     }
