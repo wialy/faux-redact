@@ -25,7 +25,7 @@ public class ObjectUtil {
     }
 
     public static function isSimple(o:*):Boolean {
-        return o is String || o is int || o is uint || o is Date || o is Array || o is Boolean
+        return o is String || o is int || o is uint || o is Date || o is Array || o is Boolean || o is Function
     }
 
     public static function mergeArrays(...args):Array {
